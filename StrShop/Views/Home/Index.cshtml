@@ -1,0 +1,11 @@
+﻿@model HomeViewModel
+
+<h1>Акционные товары</h1>
+<div class="row mt -5 mb -2">
+    @{
+        foreach (Item item in Model.actionItems)
+        {
+            @Html.Partial("AllItems", item)
+        }
+    }
+</div> 
