@@ -26,18 +26,24 @@
                     <li><a href="/Items/ItemList/kras" class="nav-link px-2 text-white">Краски</a></li>
                     <li><a href="/Items/ItemList/lak" class="nav-link px-2 text-white">Прайс</a></li>
                     <li><a href="/Items/ItemList/smes" class="nav-link px-2 text-white">Смеси</a></li>
+                    <li class="nav-item">
+                        @if (User.IsInRole("admin"))
+                        {<a class="nav-link" asp-controller="Tables" asp-action="AdminTable"> Admin Table </a>}
+                    </li>
                     <li class="nav-item"> <a class="btn btn-outline-success" asp-controller="Search" asp-action="Search"> Search </a>  </li>
                 </ul>
 
 
                 <div class="text-end">
-                    <button type="button" class="btn btn-outline-light me-2">Login</button>
-                    <button type="button" class="btn btn-warning">Sign-up</button>
+                    @if (!User.Identity.IsAuthenticated)
+                    {<a class="align-right nav-link" asp-controller="Account" asp-action="SignIn"> Sign In </a>}
+                    else
+                    {<a class="align-right nav-link" asp-controller="Account" asp-action="Logout"> Exit </a>}
                 </div>
             </div>
         </div>
     </header>
-    <div>
+    <div class="container" style="margin-top: 5rem">
         @RenderBody()
     </div>
     <footer class="text-muted py-5">

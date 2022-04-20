@@ -12,6 +12,9 @@ using StrShop.Data.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using StrShop.Data.Repository;
 using StrShop.Data.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.Extensions.Hosting;
+
 
 namespace StrShop
 {
@@ -20,7 +23,7 @@ namespace StrShop
 
         private IConfigurationRoot _confstring;
 
-        public Startup(IHostingEnvironment hostenv)
+        public Startup(Microsoft.AspNetCore.Hosting.IHostingEnvironment hostenv)
         {
             _confstring = new ConfigurationBuilder().SetBasePath(hostenv.ContentRootPath).AddJsonFile("dbsettings.json").Build();
         }
@@ -32,6 +35,14 @@ namespace StrShop
         {
             services.AddDbContext<DBconnection>(options => options.UseSqlServer(_confstring.GetConnectionString("DefaultConnection")));
 
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(options =>
+            {
+                options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/SignIn");
+                options.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Account/SignIn");
+            });
+
+            services.AddTransient<IUsers, UserRepository>();
             services.AddTransient<IAllItems, ItemRepository>();
             services.AddTransient<IItemCategory, CategoryRepository>();
             services.AddTransient<IProducer, ProducerRepository>();
@@ -47,12 +58,21 @@ namespace StrShop
         }
          
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
         {
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseSession();
+
+
+            app.UseStatusCodePages();
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            //app.UseRouting();
+
+            app.UseAuthentication();
+            //app.UseAuthorization();
             //app.UseMvcWithDefaultRoute();
             app.UseMvc(routes =>
             {
