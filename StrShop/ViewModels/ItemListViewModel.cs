@@ -11,5 +11,8 @@ namespace StrShop.ViewModels
         public IEnumerable<Item> AllItems { get; set; }
          
         public string ItemCategory { get; set; }
+
+        public string ItemProducer { get; set; }
     }
+
 }

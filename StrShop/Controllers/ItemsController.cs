@@ -14,12 +14,16 @@ namespace StrShop.Controllers
         private readonly IAllItems _AllItems;
         private readonly IItemCategory _AllCategories;
 
+
         public ItemsController(IAllItems iallItems, IItemCategory iitemCategories)
         {
             _AllItems = iallItems;
             _AllCategories = iitemCategories;
 
         }
+
+        
+
         [Route("Items/ItemList")]
         [Route("Items/ItemList/{category}")]
         public ViewResult ItemList(string category)

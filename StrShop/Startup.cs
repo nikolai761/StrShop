@@ -64,6 +64,7 @@ namespace StrShop
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseSession();
+            
 
 
             app.UseStatusCodePages();

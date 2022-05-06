@@ -12,9 +12,6 @@ namespace StrShop.Data
     {
         public static void initial(DBconnection content)
         {
-          
-
-
             if(!content.Category.Any())
             {
                 content.Category.AddRange(Categories.Select(c=>c.Value));

@@ -15,7 +15,7 @@ namespace StrShop.Data.Repository
 
         public  ItemRepository(DBconnection dBconnection) { this.dBconnection = dBconnection; }
 
-        public IEnumerable<Item> Items => dBconnection.Item.Include(c=>c.Category);
+        public IEnumerable<Item> Items => dBconnection.Item.Include(c=>c.Category).Include(p=>p.Producer);
 
         public IEnumerable<Item> GetAction => dBconnection.Item.Where(p => p.isAction).Include(c =>c.Category);
 

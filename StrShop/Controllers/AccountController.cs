@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-
 using System.Linq;
 using System;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
@@ -104,6 +103,7 @@ namespace StrShop.Controllers
 
         public async Task<IActionResult> Logout()
         {
+            
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("SignIn", "Account");
         }

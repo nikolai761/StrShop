@@ -3,28 +3,33 @@
     <div class="row mt-5 mb-2">
         <table class="table table-striped table-bordered ">
             <tbody class="table-responsive ">
-                <tr><th><input type="checkbox" class="all" name="selectedUsers" id="-1" value="-1" title="Выбрать все" /></th><th>Email</th><th>Status</th><th>Role</th></tr>
+                <tr style="display:flex; width: 100%">
+                    <th style="display:flex; width: 33.3%">Email</th>
+                    <th style="display:flex; width: 33.3%">Status</th>
+                    <th style="display:flex; width: 33.3%">Role</th>
+                </tr>
                 @foreach (var user in Model.GetUsers)
                 {
-                    <tr>
+                    <tr style="display:flex; width: 100%">
                         <td>
                             <input type="checkbox" name="selectedUsers"
                                    id="@user.ID" value="@user.ID"
                                    class="styled">
                         </td>
-                        <td><a asp-controller="Users" asp-action="UserPage" asp-route-userID="@user.ID">  @user.Email </a></td>
+
+                        <td style="display:flex; width: 33.3%"><a asp-controller="Users" asp-action="UserPage" asp-route-userID="@user.ID">  @user.Email </a></td>
                         @{ if (!user.Unblocked)
                             {
-                                <td> Blocked </td> }
+                                <td style="display:flex; width: 33.3%"> Blocked </td> }
                             else
                             {
-                                <td>Unblocked</td>} }
+                                <td style="display:flex; width: 33.3%">Unblocked</td>} }
                         @{ if (user.RoleId == 1)
                             {
-                                <td> Admin </td> }
+                                <td style="display:flex; width: 33.3%"> Admin </td> }
                             else
                             {
-                                <td>User</td>} }
+                                <td style="display:flex; width: 33.3%">User</td>} }
                     </tr>
                 }
             </tbody>

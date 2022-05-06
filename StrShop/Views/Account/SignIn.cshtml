@@ -1,24 +1,24 @@
 ﻿@model SignInViewModel
 <div class="signInhbh" style=" margin-right: auto; margin-left: auto; margin-top: 15rem; width: 25rem;">
-    <h3>Sign In</h3>
+    <h3>Вход</h3>
     <form asp-action="SignIn" method="post" class="align-self-md-center">
         <div class="form-group" style="" >
-            <label asp-for="Email"></label>
+            <label asp-for="Email">Почта</label>
             <div>
                 <input asp-for="Email" />
             </div>
             <span asp-validation-for="Email" />
         </div>
         <div class="form-group">
-            <label asp-for="Password"></label>
+            <label asp-for="Password">Пароль</label>
             <div>
                 <input asp-for="Password" />
             </div>
             <span asp-validation-for="Password" />
         </div>
 
-        <input class="btn btn-success" type="submit" value="Sign in" />
-        <a class="btn btn-warning" asp-controller="Account" asp-action="Registration"> Registration </a>
-        <a class="btn btn-warning" asp-controller="Users" asp-action="MainPage"> Main page</a>
+        <input class="btn btn-success" type="submit" value="Вход" />
+        <a class="btn btn-warning" asp-controller="Account" asp-action="Registration"> Регистрация </a>
+        
     </form>
 </div>
